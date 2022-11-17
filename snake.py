@@ -28,10 +28,28 @@ class snake(object):
 
 
 def drawMap(w, rows, surface):
+    
+    size_between = w // rows
+
+    x = 0
+    y = 0
+
+    for i in range(rows):
+        x = x + size_between
+        y = y + size_between
+
+        pygame.draw.line(surface, (255, 255, 255), (x,0), (x,w))
+        pygame.draw.line(surface, (255, 255, 255), (0,y), (w,y))
     pass
 
 
 def redrawWindow(surface):
+    
+    global rows, width
+    surface.fill((0,0,0))
+    drawMap(width, rows, surface)
+    pygame.display.update()
+
     pass
 
 
@@ -44,4 +62,22 @@ def message_box(subject, content):
 
 
 def main():
-    pass
+
+    global rows, width
+    width = 1000
+    rows = 40
+    win = pygame.display.set_mode((width, width))
+    s = snake(1(24,252,0), (10,10))
+    flag = True
+
+    clock = pygame.time.Clock()
+
+    while flag:
+
+        pygame.time.delay(50) #lower the faster
+        clock.tick(10)      #lower the slower
+
+        redrawWindow(win)
+    
+
+main()
